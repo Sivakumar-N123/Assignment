@@ -1,0 +1,25 @@
+ <div class="container">
+    <div class="calculator">
+        <input type="text"  [(ngModel)]="value">
+        <button id="ac" (click)="Clear()">AC</button>
+        <button (click)="del()">Del</button>
+        <button (click)="display('%')">%</button>
+        <button id="off" (click)="off()" >OFF</button>
+        <button (click)="display('/')">/</button>
+        <button (click)="display('7')">7</button>
+        <button (click)="display('8')">8</button>
+        <button (click)="display('9')">9</button>
+        <button (click)="display('*')">*</button>
+        <button (click)="display('4')">4</button>
+        <button (click)="display('5')">5</button>
+        <button (click)="display('6')">6</button>
+        <button (click)="display('-')">-</button>
+        <button (click)="display('1')">1</button>
+        <button (click)="display('2')">2</button>
+        <button (click)="display('3')">3</button>
+        <button (click)="display('+')">+</button>
+        <button (click)="display('.')">.</button>
+        <button (click)="display('0')">0</button>
+        <button (click)="calculate()" >=</button>
+    </div>
+    </div>
