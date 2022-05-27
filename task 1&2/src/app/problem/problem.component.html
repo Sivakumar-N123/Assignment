@@ -1,0 +1,183 @@
+<!-- task 2/ assignment 2 -->
+<div class="main">
+    <div class="problem">
+        <div class="heading">problem 1</div>
+        <div class="row">
+            <div class="col-3 userin">
+                <label for="num">enter the number</label><br>
+                <input type="text" id="num" placeholder="please enter the value" [(ngModel)]="num"><br>
+                <label for="n">enter the length of the table</label><br>
+                <input type="text" id="n" placeholder="please enter the value" [(ngModel)]="n"><br><br>
+                <button (click)="submit()" class="btn btn-primary">submit</button>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <b>The table of {{num}} with length {{n}} </b>
+                <div *ngFor="let a of table">
+                    <p>{{a}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="problem">
+        <div class="heading">problem 2</div>
+        <div class="row">
+            <div class="col-3 userin">
+                <label for="square">enter the number</label><br>
+                <input type="text" id="square" placeholder="please enter the value" [(ngModel)]="num1"><br><br>
+                <button (click)="root()" class="btn btn-primary">submit</button>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-6">
+                        squareroot of the<br /> numbers are:
+                        <div *ngFor="let a of squareroot">
+                            <p>{{a}}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        Cuberoot of the<br /> numbers are:
+                        <div *ngFor="let a of cuberoot">
+                            <p>{{a}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="problem">
+        <div class="heading">problem 3</div>
+        <div class="row">
+            <div class="col-3 userin">
+                <label for="square">enter the number</label><br>
+                <input type="text" id="square" placeholder="please enter the value" [(ngModel)]="num2"><br><br>
+                <button (click)="sort()" class="btn btn-primary">submit</button>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-6">
+                        Even numbers are:
+                        <div *ngFor="let a of even">
+                            <p>{{a}}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        Odd numbers are:
+                        <div *ngFor="let a of odd">
+                            <p>{{a}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="problem">
+        <div class="heading">problem 4</div>
+        <div class="row">
+            <div class="col-3 userin">
+                <label for="square">enter the number:</label><br>
+                <input type="text" id="square" placeholder="please enter the value" [(ngModel)]="num3"><br><br>
+                <button (click)="series()" class="btn btn-primary">submit</button><br>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                Fibonacci series:
+                <div *ngFor="let a of series1">
+                    <p>{{a}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="problem">
+
+        <div class="heading">problem 5</div>
+        <div class="nav navbar navbar-light bg-primary">
+            <div class="col-3">
+                <div class="name">
+                    <h3>Crud shopping</h3>
+                </div>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="search">
+                    <input type="text" placeholder="Search...">
+                    <button class="btn btn-light mx-2">
+                        Search
+                    </button>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="add">
+                    <button class="btn btn-success" (click)="openPopup()">
+                        Add Details
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">S.NO</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">price</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of getalldata">
+                <td>{{a.id}}</td>
+                <td>{{a.item}}</td>
+                <td>{{a.Quantity}}</td>
+                <td>{{a.price}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="openPopup(); showeditdata(a,a.id);">Edit</button>
+                    <button type="button"  class="btn btn-danger mx-2" (click)="deletedata(a)">Delete</button>
+                </td>
+                </tr>
+            </tbody>
+
+        </table>
+       
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">ADD ITEMS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formvalue">
+                            <div class="form-group">
+                              <label for="item">Item name</label>
+                              <input type="text" formControlName="item" class="form-control" id="item" placeholder="Enter the item">
+                            </div>
+                            <div class="form-group">
+                              <label for="Quantity">Quantity</label>
+                              <input type="text" formControlName="Quantity" class="form-control" id="Quantity" placeholder=" Enter the Quantity">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">price</label>
+                                <input type="text" formControlName="price" class="form-control" id="price" placeholder="Enter the price">
+                              </div> 
+                              
+                          </form>
+                          
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" (click)="closePopup()">
+                            Close
+                        </button>
+                        <button *ngIf="showadd" type="button" class="btn btn-primary" (click)="postdata()">Add</button>
+                        <button *ngIf="showupdate" type="button" class="btn btn-primary" (click)="editdata()">update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

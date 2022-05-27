@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "item": "rice",
+      "Quantity": "1 kg",
+      "price": "100"
+    },
+    {
+      "item": "sugar",
+      "Quantity": "1 kg",
+      "price": "20",
+      "id": 2
+    },
+    {
+      "item": "dhal",
+      "Quantity": "1 kg",
+      "price": "40",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
