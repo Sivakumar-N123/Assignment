@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row nav">
+        <div class="col-5">
+            <i class="fa fa-user"></i>
+            CUSTOMER MANAGER
+        </div>
+        <div class="col-7">
+            <ul class="list">
+                <li>
+                    customer
+                </li>
+                <li>order</li>
+                <li>About</li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="customer">
+        <i class="fa fa-user"></i>
+        CUSTOMER
+
+        <div class="row filterbar">
+            <div class="col-2"><a class ='btn' style="cursor:pointer" (click)="grid()"><i class="fa fa-th"></i> card view</a></div>
+            <div class="col-2"><a class ='btn' style="cursor:pointer" (click)="list()"><i class="fa fa-list"></i> list view</a></div>
+            <div class="col-2"><a class ='btn' style="cursor:pointer" ><i class="fa fa-map-marker"></i> Map view</a></div>
+            <div class="col-2"><a class ='btn' style="cursor:pointer" ><i class="fa fa-plus"></i> New customer</a></div>
+            <div class="col-4"> 
+                <label for="filter">Filter: </label>
+                <input type="text" id="filter" placeholder="search">
+            </div>
+
+            <div *ngIf="listview" class="display">
+                <table class="table">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Order Total</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let a of detials">
+                        <td>{{a.fname}}</td>
+                        <td>{{a.lname}}</td>
+                        <td>{{a.address}}</td>
+                        <td>{{a.city}}</td>
+                        <td>{{a.state}}</td>
+                        <td>{{a.order_total}}</td>
+                        <td><a href="#">view order</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div *ngIf="gridview" class="displaycard">
+                <div *ngFor="let a of detials" class="card" >
+                        <b class="card-title"> {{a.fname }}{{a.lname}}</b>
+                        <div class="card-text">
+                            <div>{{a.city}}</div>
+                            <div>{{a.state}}</div>
+                            <a href="#">view order</a>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

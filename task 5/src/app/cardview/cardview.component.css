@@ -1,0 +1,41 @@
+.nav
+{
+background-color: rgb(41, 41, 255);
+color: white;
+padding: 20px 0px;
+}
+.list{
+  display: inline-flex;
+list-style: none;
+padding-right: 50px;
+}
+.list li:hover{
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+li{
+    padding-right: 100px;
+}
+.customer
+{
+    margin-top: 30px;
+}
+.filterbar
+{
+    margin-top: 30px;
+}
+.display
+{
+    margin-top: 20px; 
+}
+.card{
+    width: 14rem
+}
+.card-title
+{
+background-color: rgb(41, 41, 255);
+color: white;
+width: 14rem;
+padding: 2px 5px;
+
+}
