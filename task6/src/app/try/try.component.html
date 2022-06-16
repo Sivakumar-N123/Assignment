@@ -1,0 +1,51 @@
+<div class="row">
+
+	<div class="col-md-3">
+		<h3>Select files</h3>
+		<input type="file" #fileInput multiple (change)="addToQueue()" />
+	</div>
+
+	<div class="col-md-9">
+		<h3>Upload queue</h3>
+		<table class="table-headed table-striped">
+			<thead>
+				<tr>
+					<th class="text-left">Name</th>
+					<th class="text-right">Size</th>
+					<th class="text-left">Progress</th>
+					<th class="text-left">Status</th>
+					<th class="text-right">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of queue | async">
+					<td>{{ item?.file?.name }}</td>
+					<td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+					<td>{{ item.progress + ' %' }}</td>
+					<td>
+						<span *ngIf="item.isPending()" class="tag tag-default"></span>
+						<span *ngIf="item.isSuccess()" class="tag tag-success"></span>
+						<span *ngIf="item.inProgress()" class="tag tag-warning"></span>
+						<span *ngIf="item.isError()" class="tag tag-danger"></span>
+					</td>
+					<td class="text-right">
+						<a tooltip="Upload file" (click)="item.upload()" *ngIf="item.isUploadable()">
+							<i class="fa fa-upload"></i>
+						</a>
+						<a tooltip="Cancel upload" (click)="item.cancel()" *ngIf="item.inProgress()">
+							<i class="fa fa-times-circle"></i>
+						</a>
+						<a tooltip="Remove from queue" (click)="item.remove()" *ngIf="!item.inProgress()">
+							<i class="fa fa-trash"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="button button-clear" (click)="uploader.clearQueue()">Clear queue</a>
+			<a class="button button-primary" (click)="uploader.uploadAll()">Upload all</a>
+		</div>
+	</div>
+
+</div>

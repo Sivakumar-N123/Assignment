@@ -1,0 +1,206 @@
+<div class="container-fluid">
+
+    <div class="row nav">
+        <div class="col-lg-3 usericon">
+            <i class="fa fa-user fa-2x"> </i>
+            CUSTOMER MANAGER
+        </div>
+        <div class="col-lg-9">
+            <ul class="list">
+                <li class="active btn" (click)="maincustomer()" >
+                    customers
+                </li >
+                <li class="btn" (click)="mainorder()">orders</li>
+                <li class="btn">About</li>
+                <li class="btn">Login</li>
+                
+            </ul>
+        </div>
+
+    </div>
+
+    <div *ngIf="customer1" class="customer">
+
+        <i class="fa fa-user"></i>
+        CUSTOMER
+        <hr>
+        <div class="row filterbar">
+            <div class="col-9">
+                <a class='btn' (click)="grid()"><i class="fa fa-th"></i> card view</a>
+                <a class='btn' (click)="list()"><i class="fa fa-list"></i> list view</a>
+                <a class='btn' (click)="map()"><i class="fa fa-map-marker"></i> Map view</a>
+                <a class='btn' (click)="newcustomerfun()"><i class="fa fa-plus"></i> New customer</a>
+            </div>
+        
+            <div class="col-3" >
+                <div><label for="filter">Filter: </label>
+                    <input type="text" id="filter" [(ngModel)]="searchvalue" placeholder="search here..."></div>
+            </div> 
+        </div>
+        <hr>
+        
+        <div class="view">
+
+            <!-- card view -->
+                <div *ngIf="gridview">
+                    <div class="displaycard">
+                        <div *ngFor="let a of (getalldata|filter:searchvalue|paginate:{itemsPerPage: 4,currentPage: page,totalItems:totalLength})" class="card">
+                            <b class="card-title"> {{a.fname }} {{a.lname}} <i class="fa fa-edit" (click)="showeditdata(a,a.id)"></i></b>
+                            <div class="card-text">
+                                <div class="row">
+                                    <div class="col-4"><i class="fa fa-user fa-3x"></i></div>
+                                    <div class="col-8">
+                                        <div>{{a.city}},</div>
+                                        <div>{{a.state}}</div>
+                                        <a href="#">view order</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pagination-controls class="text-left" (pageChange)="page = $event"></pagination-controls>
+                </div>
+                
+                
+            <!-- list view -->
+            <div *ngIf="listview" class="display">
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Order Total</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let a of (getalldata|filter:searchvalue|paginate:{ itemsPerPage: 3,currentPage: page,totalItems:totalLength})">
+                        <td><i class="fa fa-user fa-3x"></i></td>
+                        <td>{{a.fname}}</td>
+                        <td>{{a.lname}}</td>
+                        <td>{{a.address}}</td>
+                        <td>{{a.city}}</td>
+                        <td>{{a.state}}</td>
+                        <td>{{a.order_total}}</td>
+                        <td><a href="#">view order</a></td>
+                    </tr>
+                </table>
+                <pagination-controls class="text-left mt-2" (pageChange)="page = $event"></pagination-controls>
+            </div>
+
+            <!-- map view -->
+            <div *ngIf="mapview" class="mapview">
+                <i class="fa fa-user"></i>
+                Customer Information
+                <div *ngFor="let a of (getalldata|paginate:{itemsPerPage: 1,currentPage: page,totalItems:totalLength})" >
+                    <div class="row mapfilterbar">
+                        <div class="col-8">
+                            <a class='btn' (click)="customerdetials()"><i class="fa fa-list"></i> Customer Details</a>
+                            <a class='btn' (click)="customerorder()"><i class="fa fa-tags"></i> Customer Orders</a>
+                            <a class='btn' (click)="showeditdata(a,a.id)"><i class="fa fa-edit"></i> Edit Customer</a>
+                        </div>
+                    <div class="col-4"></div>
+
+                    <div *ngIf="cdetials" class="cdetials">
+                                <div class="row">
+                                    <div class="col-2"><i class="fa fa-user fa-5x"></i></div>
+                                        <div class="col-4 mapviewcustomer">
+                                            <b >{{a.fname }} {{a.lname}}</b>
+                                            <br><br>
+                                            <div>{{a.address}}</div>
+                                            <div>{{a.city}},{{a.state}}</div>
+                                        </div>
+                                        <div class="col-6"></div>
+                                </div>
+                                <div class="map">
+                                    <!-- <agm-map [[latitude]="lat"
+                                    [longitude]="lng"
+                                    [zoom]="zoom"
+                                    [disableDefaultUI]="false"
+                                    [zoomControl]="false"
+                                    (mapClick)="mapClicked($event)">
+                                  
+                                    <agm-marker 
+                                        *ngFor="let m of getalldata let i = index"
+                                        (markerClick)="clickedMarker(m.label, i)"
+                                        [latitude]="m.lat"
+                                        [longitude]="m.lng"
+                                        [label]="m.label"
+                                        [markerDraggable]="m.draggable"
+                                        (dragEnd)="markerDragEnd(m, $event)">
+                                        
+                                      <agm-info-window>
+                                        <strong>InfoWindow content</strong>
+                                      </agm-info-window>
+                                      
+                                    </agm-marker>
+                                    
+                                    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+                                        [radius]="5000"
+                                        [fillColor]="'red'"
+                                        [circleDraggable]="true"
+                                        [editable]="true">
+                                    </agm-circle>
+                                    </agm-map> -->
+                                   
+
+                                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d425345.0131603411!2d-112.4052389742342!3d33.60509909570109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b12404f46c099%3A0x7e4a690d4b280af1!2sPhoenix%20Art%20Museum!5e0!3m2!1sen!2sin!4v1654507938527!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                </div> -->
+                        </div>
+                        <div *ngIf="corder" class="corder">
+
+                        </div>
+                    </div>
+            </div>
+
+                    <pagination-controls class="text-left mt-2" (pageChange)="page = $event"></pagination-controls>
+            </div>
+
+            
+
+            <!-- new customer -->
+            <div *ngIf="newcustomer" class="newcustomer">
+                <div class="customerhead">
+                 {{title}}
+                </div> 
+                <hr>
+                <form [formGroup]="formvalue" (ngSubmit)="onsubmit()">
+                 <div class="row ">
+                     <div class="col-6 form-group">
+                         <div>
+                         <label for="fname">First Name:</label>
+                         <input type="text" formControlName="fname" class="form-control" id="fname" placeholder="Enter the First Name">
+                     </div>
+                     </div>
+                     <div class="col-6 form-group">
+                         <div>
+                         <label for="lname">Last Name:</label>
+                         <input type="text" formControlName="lname" class="form-control" id="lname" placeholder=" Enter the Last Name">
+                     </div>
+                     </div>
+                 </div>
+                 <div class="form-group">
+                       <label for="address">Address:</label>
+                       <input type="text" formControlName="address" class="form-control" id="address" placeholder="Enter the Address">
+                 </div> 
+                 <div class="form-group">
+                         <label for="city">City:</label>
+                         <input type="text" formControlName="city" class="form-control" id="city" placeholder="Enter the City">
+                 </div> 
+                 <div class="form-group">
+                         <label for="state">State:</label>
+                         <input type="text" formControlName="state" class="form-control" id="state" placeholder="Enter the state">
+                 </div>
+            
+                 <button *ngIf="addcustomer" type="submit" class="btn btn-primary mt-4" (click)="postdata()">Add customer</button>
+                 <button *ngIf="editcustomer" type="submit" class="btn btn-primary mt-4" (click)="editdata()">edit customer</button>
+                 <button *ngIf="editcustomer" type="submit" class="btn btn-danger mt-4" (click)="cancel()">Cancel</button>
+            
+                 </form>
+             </div>
+
+        </div>
+    
+    </div>
+
+</div>
