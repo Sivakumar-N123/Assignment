@@ -1,0 +1,26 @@
+.file-container
+{
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    padding: 30px;
+    margin-top: 20px;
+}
+.multifile
+{
+    visibility: hidden;
+}
+.display
+{
+    margin-top: 15px;
+}
+.btn
+{
+    margin-right: 5px;
+}
+.fa
+{
+    margin-left: 10px;
+    
+}
