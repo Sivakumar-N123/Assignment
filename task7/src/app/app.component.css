@@ -1,0 +1,23 @@
+.weatherapp{
+    border: 3px solid black;
+    padding: 50px;
+    border-radius: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+}
+.content {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mr {
+    margin-right: 16px;
+}

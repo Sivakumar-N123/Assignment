@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CardviewComponent } from './cardview/cardview.component';
-import { MultiuploaderComponent } from './multiuploader/multiuploader.component';
+import { WeatherReportComponent } from './components/weather-report/weather-report.component';
+
 
 const routes: Routes = [
-  {path:"card",component:CardviewComponent},
-  {path:"uploader",component:MultiuploaderComponent}
+  {
+    path: '',
+    component: WeatherReportComponent
+  },
 
+  {
+    path: ":locationName",
+    component: WeatherReportComponent
+  }
 ];
 
 @NgModule({
